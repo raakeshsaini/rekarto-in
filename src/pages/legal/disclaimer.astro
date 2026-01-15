@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/ui/Section.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+const breadcrumbItems = [
+//   { label: "Home", href: "/" },
+  { label: "Legal", href: "/legal/disclaimer" },
+  { label: "Disclaimer" },
+];
+
+---
+
+<BaseLayout title="Disclaimer | ReKarto">
+    <Breadcrumbs items={breadcrumbItems} />
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+
+    <Section title="Disclaimer">
+      <p>
+        All information provided on the ReKarto website is for general guidance
+        and informational purposes only.
+      </p>
+
+      <h3>No Business Advice</h3>
+      <p>
+        Content should not be interpreted as financial, legal, or business
+        advice. Users are responsible for their own decisions.
+      </p>
+
+      <h3>Execution Responsibility</h3>
+      <p>
+        Business success depends on individual effort, local demand, pricing
+        discipline, and operational execution.
+      </p>
+
+      <h3>No Misrepresentation</h3>
+      <p>
+        ReKarto does not represent itself as a guaranteed income opportunity,
+        liquidation outlet, or low-risk scheme.
+      </p>
+    </Section>
+
+  </section>
+</BaseLayout>

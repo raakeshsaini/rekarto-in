@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/ui/Section.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+const breadcrumbItems = [
+//   { label: "Home", href: "/" },
+  { label: "Legal", href: "/legal/refund" },
+  { label: "Refund & Cancellation" },
+];
+
+---
+
+<BaseLayout title="Refund & Cancellation Policy | ReKarto">
+    <Breadcrumbs items={breadcrumbItems} />
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+
+    <Section title="Refund & Cancellation Policy">
+      <p>
+        ReKarto operates an application-based and relationship-driven business
+        model.
+      </p>
+
+      <h3>Application Fees</h3>
+      <p>
+        Any fees paid towards application processing or onboarding are
+        non-refundable unless explicitly stated otherwise.
+      </p>
+
+      <h3>Partner Engagement</h3>
+      <p>
+        Once a partnership is approved and initiated, refunds are not automatic
+        and will be evaluated on a case-by-case basis.
+      </p>
+
+      <h3>Operational Costs</h3>
+      <p>
+        Costs incurred towards logistics, inventory handling, or operational
+        setup are not refundable.
+      </p>
+
+      <h3>Right to Refuse Refund</h3>
+      <p>
+        ReKarto reserves the right to refuse refund requests that arise from
+        misuse, misrepresentation, or non-compliance with guidelines.
+      </p>
+    </Section>
+
+  </section>
+</BaseLayout>

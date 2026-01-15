@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/ui/Section.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+const breadcrumbItems = [
+//   { label: "Home", href: "/" },
+  { label: "Legal", href: "/legal/terms" },
+  { label: "Terms & Conditions" },
+];
+
+---
+
+<BaseLayout title="Terms & Conditions | ReKarto">
+    <Breadcrumbs items={breadcrumbItems} />
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+
+    <Section title="Terms & Conditions">
+      <p>
+        These Terms & Conditions govern your access to and use of the ReKarto
+        website and services. By applying, engaging, or communicating with
+        ReKarto, you agree to these terms.
+      </p>
+
+      <h3>Nature of Business</h3>
+      <p>
+        ReKarto operates as an offline-first thrift and surplus distribution
+        ecosystem. We are not a franchise, investment scheme, or profit
+        guarantee program.
+      </p>
+
+      <h3>No Profit or Income Guarantee</h3>
+      <p>
+        Business outcomes depend on individual execution, local market
+        conditions, and operational discipline. ReKarto does not guarantee
+        profits, margins, or sales volume.
+      </p>
+
+      <h3>City Partner Model</h3>
+      <p>
+        City partnerships are subject to approval, availability, and ongoing
+        compliance with operational guidelines. ReKarto reserves the right to
+        approve, reject, suspend, or terminate partnerships at its discretion.
+      </p>
+
+      <h3>Inventory Disclaimer</h3>
+      <p>
+        Inventory supplied may vary by category, grade, and availability.
+        ReKarto does not guarantee uniform stock mix or resale outcomes.
+      </p>
+
+      <h3>Brand Usage</h3>
+      <p>
+        Unauthorized use of the ReKarto name, branding, or misrepresentation of
+        association is strictly prohibited.
+      </p>
+
+      <h3>Right to Modify</h3>
+      <p>
+        ReKarto reserves the right to modify these terms at any time without
+        prior notice.
+      </p>
+    </Section>
+
+  </section>
+</BaseLayout>

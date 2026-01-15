@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/ui/Section.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+const breadcrumbItems = [
+//   { label: "Home", href: "/" },
+  { label: "Legal", href: "/legal/privacy" },
+  { label: "Privacy Policy" },
+];
+
+---
+
+<BaseLayout title="Privacy Policy | ReKarto">
+    <Breadcrumbs items={breadcrumbItems} />
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+
+    <Section title="Privacy Policy">
+      <p>
+        ReKarto respects your privacy. This policy explains how we collect and
+        use your information.
+      </p>
+
+      <h3>Information We Collect</h3>
+      <ul>
+        <li>Name</li>
+        <li>Phone number</li>
+        <li>Email address</li>
+        <li>City and business-related details</li>
+      </ul>
+
+      <h3>How We Use Information</h3>
+      <p>
+        Information is used solely for application review, communication, and
+        internal evaluation. We do not sell or rent personal data.
+      </p>
+
+      <h3>Third-Party Tools</h3>
+      <p>
+        We may use tools such as Google Analytics or WhatsApp for communication
+        and analytics purposes.
+      </p>
+
+      <h3>Data Security</h3>
+      <p>
+        Reasonable measures are taken to protect your information, though no
+        system can be completely secure.
+      </p>
+    </Section>
+
+  </section>
+</BaseLayout>

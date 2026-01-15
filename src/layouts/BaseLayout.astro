@@ -125,7 +125,7 @@ const { title = "ReKarto" } = Astro.props;
       <a href="/how-it-works" class="border-b pb-2">How it works</a>
       <a href="/city-partner" class="border-b pb-2">City Partner</a>
       <!-- <a href="/faq" class="hover:underline">FAQ</a> -->
-
+<div class="divider"></div>
       <a href="/blog" class="border-b pb-2">Blog</a>
       <a
   href="/apply"
@@ -148,17 +148,66 @@ const { title = "ReKarto" } = Astro.props;
 
     <!-- FOOTER -->
     <footer class="border-t border-zinc-200 mt-20">
-      <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-zinc-600 space-y-2">
-        <p>© {new Date().getFullYear()} ReKarto</p>
-        <nav class="flex gap-4">
-          <a href="/concept/offline-thrift-business">Offline thrift model</a>
-          <a href="/how-it-works">How it works</a>
-          <a href="/city-partner">City Partner</a>
-          <a href="/faq" >FAQ</a>
+  <div class="max-w-6xl mx-auto px-4 py-10 space-y-8">
 
-        </nav>
-      </div>
-    </footer>
+    <!-- Primary Footer Navigation -->
+    <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-zinc-700">
+      <a href="/concept/offline-thrift-business" class="hover:text-black">
+        Offline Thrift Model
+      </a>
+      <a href="/how-it-works" class="hover:text-black">
+        How It Works
+      </a>
+      <a href="/city-partner" class="hover:text-black">
+        City Partner
+      </a>
+      <a href="/faq" class="hover:text-black">
+        FAQ
+      </a>
+    </nav>
+
+    <!-- Divider -->
+    <div class="h-px bg-zinc-200"></div>
+
+    <!-- Bottom Row -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-zinc-500">
+
+      <!-- Brand / Legal Identity -->
+      <p>
+        © {new Date().getFullYear()} ReKarto · A brand of WASSify Services ·
+        GSTIN: 09BZFPS9370G1ZR
+      </p>
+
+      <!-- Legal Links -->
+      <nav>
+        <ul class="flex flex-wrap gap-x-4 gap-y-2">
+          <li>
+            <a href="/legal/terms" class="hover:underline">
+              Terms
+            </a>
+          </li>
+          <li>
+            <a href="/legal/privacy" class="hover:underline">
+              Privacy
+            </a>
+          </li>
+          <li>
+            <a href="/legal/refund" class="hover:underline">
+              Refund Policy
+            </a>
+          </li>
+          <li>
+            <a href="/legal/disclaimer" class="hover:underline">
+              Disclaimer
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</footer>
+
 <script>
   const openBtn = document.getElementById("mobile-menu-btn");
   const closeBtn = document.getElementById("mobile-menu-close");
