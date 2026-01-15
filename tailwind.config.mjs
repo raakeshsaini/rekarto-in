@@ -1,5 +1,5 @@
 export default {
-  content: ["./src/**/*.{astro,html,js}"],
+  content: ["./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -19,5 +19,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+  ],
 };
