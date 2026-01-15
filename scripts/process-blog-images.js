@@ -1,6 +1,16 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
+import fs from "fs";
+import path from "path";
+
+const RAW_DIR = "raw-images/blog";
+
+if (!fs.existsSync(RAW_DIR)) {
+  console.log(`[images] No raw blog images found. Skipping image processing.`);
+  process.exit(0);
+}
+
 
 const INPUT_DIR = "raw-images/blog";
 const OUTPUT_DIR = "public/images/blog";
