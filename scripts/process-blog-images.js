@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
-import fs from "fs";
-import path from "path";
+
 
 const RAW_DIR = "raw-images/blog";
 
