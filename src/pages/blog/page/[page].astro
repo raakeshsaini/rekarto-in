@@ -1,0 +1,113 @@
+---
+/* eslint-disable */
+// @ts-nocheck
+
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/ui/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+
+/* ✅ DEFINE PAGE SIZE HERE */
+const PAGE_SIZE = 12;
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 12; // 👈 INLINE (THIS IS THE KEY)
+
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+  );
+
+  const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+
+  return Array.from({ length: totalPages }).map((_, i) => ({
+    params: { page: String(i + 1) },
+    props: {
+      page: i + 1,
+      totalPages,
+      posts: posts.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE),
+    },
+  }));
+}
+
+
+const { page, totalPages, posts } = Astro.props;
+
+const breadcrumbItems = [
+  { label: "Blog", href: "/blog" },
+  { label: `Page ${page}` },
+];
+
+const fallbackImage = "/images/blog/fallback.webp";
+---
+
+---
+
+<BaseLayout title={`Blog — Page ${page} | ReKarto`}>
+
+  <section class="max-w-6xl mx-auto space-y-12">
+
+    <!-- HEADER -->
+    <section class="section">
+      <h1 class="text-xl font-semibold">Blog</h1>
+      <p class="text-sm text-zinc-700">
+        Page {page} of {totalPages}
+      </p>
+    </section>
+
+    <!-- GRID -->
+    <section
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      {posts.map((post) => {
+        const cardImage = post.data.image || fallbackImage;
+
+        return (
+          <article
+          data-blog-card
+            data-search={`${post.data.title} ${post.data.description}`.toLowerCase()}
+            class="section p-0 overflow-hidden flex flex-col transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div class="aspect-video overflow-hidden group">
+              <img
+                src={cardImage}
+                alt={post.data.imageAlt}
+                class="w-full h-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 space-y-3">
+              <h2 class="text-sm font-semibold">
+                <a href={`/blog/${post.slug}`} class="hover:underline">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-sm text-zinc-700 flex-1">
+                {post.data.description}
+              </p>
+              <p class="text-xs text-zinc-500">
+                {post.data.publishDate.toDateString()}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </section>
+
+    <!-- PAGINATION -->
+    <nav class="flex justify-between text-sm">
+      {page > 1 ? (
+        <a href={page === 2 ? "/blog" : `/blog/page/${page - 1}`} class="underline">
+          ← Newer
+        </a>
+      ) : <span />}
+
+      {page < totalPages && (
+        <a href={`/blog/page/${page + 1}`} class="underline">
+          Older →
+        </a>
+      )}
+    </nav>
+
+  </section>
+
+</BaseLayout>

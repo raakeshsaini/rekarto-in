@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import RulesFirst from "../components/RulesFirst.astro";
+
+const breadcrumbItems = [
+  { label: "FAQ" },
+];
+
+const faqs = [
+  {
+    q: "What is ReKarto City Partner program?",
+    a: "It is a city-level offline thrift distribution partnership where you operate as the authorized buyer and seller for your city under ReKarto’s supply system.",
+  },
+  {
+    q: "What type of inventory does ReKarto supply?",
+    a: "We supply graded surplus and thrift inventory sourced from organized channels. The focus is resale-ready stock suitable for offline distribution, not random liquidation lots.",
+  },
+  {
+  q: "What is the ReKarto City Partner program?",
+  a: "It is a city-level offline thrift and surplus distribution partnership where you operate as the authorized buyer and seller for your city under ReKarto’s centralized supply system.",
+},
+
+{
+  q: "Who is this program designed for?",
+  a: "This program is designed for serious offline operators with physical space who want predictable supply, fixed pricing, and long-term business stability. It is not meant for online-only sellers or casual resellers.",
+},
+
+{
+  q: "Do you sell retail or small quantities?",
+  a: "No. ReKarto does not sell retail or small quantities. We supply only to approved City Partners, who then serve local retailers and micro resellers in their city.",
+},
+
+{
+  q: "Is credit or post-paid buying allowed?",
+  a: "No. All purchases are strictly prepaid. Credit-based buying creates instability and is not part of the ReKarto operating model.",
+},
+
+{
+  q: "Is online or Instagram reselling allowed?",
+  a: "No. The City Partner model is strictly offline-first. Partners are expected to sell through physical channels and local resale networks.",
+},
+
+{
+  q: "Do you offer a dead stock guarantee?",
+  a: "ReKarto does not offer open buybacks or cash refunds. However, active City Partners are eligible for a controlled stock-rotation system if certain stock does not move after a defined holding period.",
+},
+
+{
+  q: "What is the stock-rotation system?",
+  a: "Stock rotation allows limited exchange of select unsold B or C grade items into other categories through a credit-based adjustment. This is designed to protect operators during learning phases, not to replace selling discipline.",
+},
+
+{
+  q: "Is stock rotation available on all products?",
+  a: "No. Stock rotation is never available on A-grade fast movers and is applicable only on select B and C grade stockks, subject to condition checks and eligibility rules.",
+},
+
+{
+  q: "After how long can stock rotation be requested?",
+  a: "Stock rotation may be requested only after a minimum holding period, typically between 60 to 90 days, and only if monthly purchase discipline is maintained.",
+},
+
+{
+  q: "Is stock rotation a refund?",
+  a: "No. Stock rotation is not a refund. No cash is returned. Approved rotation is adjusted as credit against future orders.",
+},
+
+{
+  q: "How much stock can be rotated?",
+  a: "Rotation is strictly capped and limited to a small percentage of recent purchases. Exact limits depend on partner performance and are shared privately after approval.",
+},
+
+{
+  q: "What happens if the rotation system is misused?",
+  a: "Misuse results in immediate loss of rotation privilege and may lead to suspension of other partner benefits or termination of the partnership.",
+},
+
+{
+  q: "Do all partners need to use stock rotation?",
+  a: "No. Most successful partners rarely need rotation once local demand is understood. The system exists as protection, not dependency.",
+},
+
+{
+  q: "What other benefits do City Partners receive?",
+  a: "City Partners receive territory clarity, demand routing from micro partners, access to private inventory drops, optional city-level website presence, and long-term supply stability.",
+},
+
+{
+  q: "How do I apply for the City Partner program?",
+  a: "You can apply through the application form on rekarto.in. All applications are manually reviewed, and most applications are rejected by design.",
+},
+
+  {
+    q: "Do I need prior thrift or retail experience?",
+    a: "No. The system is designed for disciplined execution, not prior retail expertise. However, basic local market understanding is required.",
+  },
+  {
+    q: "Is this an online or offline business?",
+    a: "Primarily offline. Online resale is optional and only recommended after stable offline operations.",
+  },
+  {
+    q: "How much investment is required?",
+    a: "Investment varies by city and scale. Exact numbers are discussed only after application review to avoid mismatched expectations.",
+  },
+  {
+    q: "Does ReKarto guarantee profits?",
+    a: "No. ReKarto provides a structured supply and distribution system. Execution discipline determines outcomes.",
+  },
+  {
+    q: "Is there exclusivity for a city?",
+    a: "Yes. Only one active City Partner per city is allowed at a time, subject to performance.",
+  },
+  {
+    q: "What kind of inventory is supplied?",
+    a: "Graded thrift inventory sourced from liquidation, exports, and organized channels — not random street sourcing.",
+  },
+  {
+    q: "Can I run this part-time?",
+    a: "No. This model requires active involvement, especially in the first 6–12 months.",
+  },
+  {
+    q: "How do I apply?",
+    a: "You can apply via the Apply page. Shortlisted applicants are contacted for the next steps.",
+  },
+];
+---
+
+<BaseLayout title="FAQ | ReKarto">
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-0 space-y-10">
+
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="space-y-2">
+      <h1 class="text-2xl sm:text-3xl font-semibold">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-zinc-600 text-sm max-w-2xl">
+        Clear answers to common questions about the ReKarto City Partner model.
+      </p>
+    </section>
+  <!-- RULES FIRST -->
+  <section class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
+    <RulesFirst />
+  </section>
+    <section class="divide-y border rounded-xl overflow-hidden">
+  {faqs.map((item, index) => (
+    <div class="faq-item">
+      <button
+        class="faq-question w-full text-left px-5 py-4 flex justify-between items-center text-sm font-medium"
+        aria-expanded={index === 0 ? "true" : "false"}
+      >
+        <span>{item.q}</span>
+        <span class="faq-icon transition">+</span>
+      </button>
+
+      <div
+        class={`faq-answer px-5 pb-4 text-sm text-zinc-700 leading-relaxed ${
+          index === 0 ? "block" : "hidden"
+        }`}
+      >
+        {item.a}
+      </div>
+    </div>
+  ))}
+</section>
+
+
+    <section class="bg-zinc-50 rounded-xl p-6 space-y-3">
+      <p class="text-sm text-zinc-700">
+        Still have questions or think you’re a good fit?
+      </p>
+      <a
+        href="/apply"
+        class="inline-block bg-zinc-900 text-white px-5 py-2 rounded-md text-sm"
+      >
+        Apply as City Partner
+      </a>
+    </section>
+
+  </section>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a,
+        },
+      })),
+    })}
+  </script>
+<script>
+  const faqButtons = document.querySelectorAll(".faq-question");
+
+  faqButtons.forEach((btn) => {
+    if (!(btn instanceof HTMLElement)) return;
+
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      faqButtons.forEach((b) => {
+        if (!(b instanceof HTMLElement)) return;
+
+        b.setAttribute("aria-expanded", "false");
+
+        const icon = b.querySelector(".faq-icon");
+        if (icon instanceof HTMLElement) {
+          icon.textContent = "+";
+        }
+
+        const answer = b.nextElementSibling;
+        if (answer instanceof HTMLElement) {
+          answer.classList.add("hidden");
+        }
+      });
+
+      if (!isOpen) {
+        btn.setAttribute("aria-expanded", "true");
+
+        const icon = btn.querySelector(".faq-icon");
+        if (icon instanceof HTMLElement) {
+          icon.textContent = "–";
+        }
+
+        const answer = btn.nextElementSibling;
+        if (answer instanceof HTMLElement) {
+          answer.classList.remove("hidden");
+        }
+      }
+    });
+  });
+</script>
+
+
+</BaseLayout>

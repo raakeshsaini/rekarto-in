@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SystemSnapshot from "../components/SystemSnapshot.astro";
+import RulesFirst from "../components/RulesFirst.astro";
+import WhoNotFor from "../components/WhoNotFor.astro";
+import PrimaryCTA from "../components/PrimaryCTA.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+
+const breadcrumbItems = [
+    { label: "City Partner" },
+];
+
+---
+
+
+<BaseLayout title="City Partner Program — ReKarto">
+<Breadcrumbs items={breadcrumbItems} />
+  <section class="max-w-4xl mx-auto space-y-12">
+
+    <section class="section">
+      <h1 class="text-xl font-semibold">City Partner Program</h1>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        The City Partner is the backbone of the ReKarto system.
+        One operator. One city. Full responsibility.
+      </p>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        This is not a dealership, franchise, or reseller opportunity.
+        It is an operational role meant for serious offline businesses.
+      </p>
+    </section>
+
+    <section class="section">
+      <RulesFirst />
+    </section>
+
+    <section class="section">
+      <SystemSnapshot />
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What a City Partner Actually Is</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>The exclusive offline operator for a city</li>
+        <li>The single point of distribution for that region</li>
+        <li>Responsible for handling micro partners and retailers</li>
+        <li>Expected to run this as a real business</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What a City Partner Is NOT</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Not a buyer of small lots</li>
+        <li>Not an online reseller</li>
+        <li>Not credit-based</li>
+        <li>Not a negotiator</li>
+      </ul>
+      <p class="text-sm text-zinc-800">
+        If you expect flexibility here, this model will not work for you.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Who Should Apply</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Existing offline retailers or distributors</li>
+        <li>Operators with physical space</li>
+        <li>Long-term city-level thinkers</li>
+        <li>People comfortable with fixed systems</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <WhoNotFor />
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What You Get</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Centralized thrift & surplus supply</li>
+        <li>Fixed pricing discipline</li>
+        <li>City-level exclusivity</li>
+        <li>Inbound demand routing</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What Is Expected From You</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Physical storage/distribution space</li>
+        <li>MOQ-based buying capability</li>
+        <li>Operational discipline</li>
+        <li>Ability to reject bad buyers</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="space-y-3 text-sm text-zinc-700">
+        <p><strong>Do you sell retail?</strong><br />No.</p>
+        <p><strong>Is credit available?</strong><br />No.</p>
+        <p><strong>Can I sell online?</strong><br />No.</p>
+        <p><strong>Multiple partners per city?</strong><br />Never.</p>
+        <p><strong>Is pricing negotiable?</strong><br />No.</p>
+        <p><strong>Will ReKarto sell directly?</strong><br />No.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="text-sm text-zinc-800 max-w-2xl">
+        This program is intentionally strict. Most applicants are rejected.<br>
+        This protects serious operators and system stability.
+      </p>
+    </section>
+
+    <section>
+      <PrimaryCTA />
+    </section>
+
+  </section>
+
+</BaseLayout>

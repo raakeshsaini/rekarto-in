@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { concepts } from "../../data/concepts";
+
+export function getStaticPaths() {
+  return concepts.map(concept => ({
+    params: { slug: concept.slug },
+    props: { concept }
+  }));
+}
+
+const { concept } = Astro.props;
+---
+
+<BaseLayout title={`${concept.title} — ReKarto`}>
+
+  <section class="max-w-4xl mx-auto space-y-12">
+
+    <section class="section">
+      <h1 class="text-xl font-semibold">{concept.title}</h1>
+      <p class="text-sm text-zinc-700">{concept.intro}</p>
+    </section>
+
+    {concept.sections.map(section => (
+      <section class="section">
+        <h2 class="section-title">{section.heading}</h2>
+        <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+          {section.points.map(point => <li>{point}</li>)}
+        </ul>
+      </section>
+    ))}
+
+    <section class="section">
+      <h2 class="section-title">Practical Verdict</h2>
+      <p class="text-sm text-zinc-700">{concept.verdict}</p>
+    </section>
+
+    <section>
+      <a href="/apply" class="bg-zinc-900 text-white px-5 py-2 rounded-md">
+        Apply as City Partner
+      </a>
+    </section>
+
+  </section>
+
+</BaseLayout>

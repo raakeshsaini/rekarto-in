@@ -1,16 +1,130 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SystemSnapshot from "../components/SystemSnapshot.astro";
+import RulesFirst from "../components/RulesFirst.astro";
+import PrimaryCTA from "../components/PrimaryCTA.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero-warehouse.webp";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="ReKarto — Offline Thrift & Surplus Network">
+
+  <!-- HERO -->
+  <section class="grid md:grid-cols-2 gap-10 items-center">
+
+    <!-- TEXT -->
+    <div class="space-y-6 animate-fade">
+
+      <h1 class="text-2xl font-semibold text-zinc-900">
+        We build local thrift & surplus businesses.
+        <br />
+        Not online resellers.
+      </h1>
+
+      <p class="text-sm text-zinc-700 max-w-xl">
+        ReKarto is an offline-first supply and distribution system
+        designed for serious operators who want to run disciplined,
+        city-level thrift businesses.
+      </p>
+
+      <PrimaryCTA />
+
+    </div>
+
+    <!-- IMAGE -->
+    <div class="rounded-lg overflow-hidden shadow-soft animate-fade">
+      <Image
+  src={heroImage}
+  alt="ReKarto supply warehouse"
+  width={1600}
+  height={900}
+  format="webp"
+  loading="eager"
+  class="rounded-lg shadow-soft"
+/>
+    </div>
+
+  </section>
+
+  <!-- RULES FIRST -->
+  <section class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
+    <RulesFirst />
+  </section>
+
+  <!-- SYSTEM SNAPSHOT -->
+  <section class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
+    <SystemSnapshot />
+  </section>
+
+  <!-- WHAT REKARTO DOES -->
+  <section class="grid md:grid-cols-2 gap-8 animate-fade">
+
+    <div class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft space-y-3">
+      <h2 class="text-sm font-semibold text-zinc-900">
+        What ReKarto Actually Does
+      </h2>
+
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Aggregates surplus and thrift supply centrally</li>
+        <li>Maintains fixed pricing and supply discipline</li>
+        <li>Appoints one exclusive City Partner per city</li>
+        <li>Routes demand to local partners, not to itself</li>
+      </ul>
+    </div>
+
+    <div class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft space-y-3">
+      <h2 class="text-sm font-semibold text-zinc-900">
+        Who This Is For
+      </h2>
+
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Offline retailers or distributors</li>
+        <li>Operators with physical space</li>
+        <li>People thinking long-term, not quick flips</li>
+        <li>Those who respect fixed systems</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- WHO NOT FOR -->
+  <section class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade space-y-3">
+
+    <h2 class="text-sm font-semibold text-zinc-900">
+      Who This Is NOT For
+    </h2>
+
+    <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+      <li>Instagram or online resellers</li>
+      <li>Anyone looking for cheap retail stock</li>
+      <li>Buyers dependent on credit</li>
+      <li>People who negotiate pricing</li>
+    </ul>
+
+    <p class="text-sm text-zinc-800">
+      If you see yourself here — this system will frustrate you.
+    </p>
+
+  </section>
+
+  <!-- WHY THIS MODEL -->
+  <section class="border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade space-y-3">
+
+    <h2 class="text-sm font-semibold text-zinc-900">
+      Why This Model Exists
+    </h2>
+
+    <p class="text-sm text-zinc-700 max-w-2xl">
+      Most thrift businesses fail not because of demand,
+      but because of inconsistent supply, weak discipline,
+      and retail-level chaos.
+    </p>
+
+    <p class="text-sm text-zinc-700 max-w-2xl">
+      ReKarto exists to remove that chaos by centralizing supply,
+      enforcing rules, and empowering serious local operators.
+    </p>
+
+  </section>
+
+</BaseLayout>

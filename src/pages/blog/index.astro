@@ -1,0 +1,129 @@
+---
+/* eslint-disable */
+// @ts-nocheck
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+
+import { getCollection } from "astro:content";
+
+const breadcrumbItems = [
+  { label: "Blog" },
+];
+
+const PAGE_SIZE = 12;
+
+// Fetch + sort
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+// Page 1 data
+const posts = allPosts.slice(0, PAGE_SIZE);
+const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
+const page = 1;
+
+const fallbackImage = "/images/blog/fallback.webp";
+---
+
+<BaseLayout title="Blog | ReKarto">
+
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+
+
+    <!-- HEADER -->
+<section class="space-y-3">
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h1 class="text-xl font-semibold">Blog</h1>
+      <p class="text-sm text-zinc-600">
+        Practical insights on thrift, supply & offline business.
+      </p>
+    </div>
+
+    <input
+      type="search"
+      id="blog-search"
+      placeholder="Search blog…"
+      class="border rounded-md px-4 py-2 w-full sm:w-72 text-sm"
+    />
+  </div>
+</section>
+
+
+    <!-- GRID -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {posts.map((post) => {
+        const cardImage = post.data.image || fallbackImage;
+
+        return (
+          <article
+            data-blog-card
+  data-search={`${post.data.title} ${post.data.description}`.toLowerCase()}
+            class="section p-0 overflow-hidden flex flex-col transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div class="aspect-video overflow-hidden group rounded-lg">
+              <img
+                src={cardImage}
+                alt={post.data.imageAlt}
+                class="w-full h-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="p-5 flex flex-col flex-1 space-y-3">
+              <h2 class="text-sm font-semibold">
+                <a href={`/blog/${post.slug}`} class="hover:underline">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-sm text-zinc-700 flex-1">
+                {post.data.description}
+              </p>
+              <p class="text-xs text-zinc-500">
+                {post.data.publishDate.toDateString()}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </section>
+
+    <!-- PAGINATION -->
+    <nav class="flex justify-between items-center text-sm text-zinc-600 pt-6">
+
+      <span />
+      {totalPages > 1 && (
+        <a href="/blog/page/2" class="underline hover:text-black">
+          Older →
+        </a>
+      )}
+    </nav>
+
+
+  </section>
+
+<script>
+  const input = document.getElementById("blog-search");
+  const cards = document.querySelectorAll("[data-blog-card]");
+
+  if (input instanceof HTMLInputElement) {
+    input.addEventListener("input", () => {
+      const q = input.value.toLowerCase().trim();
+
+      cards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+
+        const text = card.dataset.search || "";
+        card.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+  }
+</script>
+
+
+
+
+</BaseLayout>

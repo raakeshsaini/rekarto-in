@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { cities } from "../../data/cities";
+import CityStatusBadge from "../../components/ui/CityStatusBadge.astro";
+
+export function getStaticPaths() {
+  return cities.map(city => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+
+const partnerWhatsappUrl =
+  city.hasPartner && city.partner
+    ? "https://web.whatsapp.com/send?phone=" + city.partner.whatsapp
+    : null;
+---
+
+<BaseLayout title={`Thrift Business in ${city.name} — ReKarto`}>
+
+  <section class="max-w-4xl mx-auto space-y-12">
+
+    <section class="section space-y-2">
+      <h1 class="text-xl font-semibold">
+        Thrift Business in {city.name}, {city.state}
+      </h1>
+      <CityStatusBadge hasPartner={city.hasPartner} />
+      <p class="text-sm text-zinc-700">
+        This page explains whether an offline thrift and surplus business
+        makes sense in {city.name}.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Local Business Context</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        {city.context.map(point => <li>{point}</li>)}
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Real Challenges</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        {city.challenges.map(point => <li>{point}</li>)}
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">City Fit Verdict</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        {city.recommendation.map(point => <li>{point}</li>)}
+      </ul>
+    </section>
+
+    <section class="section space-y-2">
+      <p class="text-xs text-zinc-600 mb-4">
+        ReKarto appoints only one City Partner per city.
+      </p>
+
+      {partnerWhatsappUrl ? (
+        <a href={partnerWhatsappUrl} class="border  px-5 py-2 text-sm">
+          Contact City Partner
+        </a>
+      ) : (
+        <a href="/apply" class="bg-zinc-900 text-white px-5 py-2 rounded-md">
+          Apply as City Partner
+        </a>
+      )}
+    </section>
+
+    <section class=" text-sm text-zinc-700 space-y-1">
+      <a href="/how-it-works" class="underline">How the system works</a>  |  
+      <a href="/city-partner" class="underline">City Partner program</a>
+    </section>
+
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,228 @@
+---
+/* eslint-disable */
+// @ts-nocheck
+
+
+
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import { buildBreadcrumbs } from "../../utils/breadcrumbs";
+
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return Promise.all(
+    posts.map(async (post) => {
+      const { Content } = await post.render();
+
+      return {
+        params: { slug: post.slug },
+        props: {
+          title: post.data.title,
+          date: post.data.publishDate.toDateString(),
+          image: post.data.image,
+          imageAlt: post.data.imageAlt,
+          body: post.body,
+          Content,
+        },
+      };
+    })
+  );
+}
+
+
+
+
+
+
+// ✅ ALL VARIABLES IN ONE PLACE
+const { title, date, image, imageAlt, body, Content } = Astro.props;
+const fallbackImage = "/images/blog/fallback.webp";
+const heroImage = image || fallbackImage;
+const heroAlt = imageAlt || title;
+const breadcrumbItems = [
+  { label: "Blog", href: "/blog" },
+  { label: title },
+];
+const words = body.split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
+
+
+
+---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{title}",
+  "image": "{heroImage}",
+  "datePublished": "{date}",
+  "author": {
+    "@type": "Organization",
+    "name": "ReKarto"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ReKarto",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rekarto.in/images/logo.svg"
+    }
+  }
+}
+</script>
+
+<div
+  id="reading-progress"
+  class="fixed top-0 left-0 h-[3px] bg-orange-500 z-[100] w-0"
+></div>
+<BaseLayout title={`${title} — ReKarto`}>
+
+  <article class="max-w-[720px] mx-auto px-4 sm:px-0 space-y-12">
+
+<Breadcrumbs items={breadcrumbItems} />
+
+    <!-- HEADER -->
+    <section class="space-y-2">
+  <h1 class="text-2xl sm:text-3xl font-semibold leading-tight text-zinc-900">
+    {title}
+  </h1>
+  <p class="text-sm text-zinc-500">
+  {date} · {readingTime} min read
+</p>
+
+
+</section>
+
+<div class="divider"></div>
+
+    <!-- HERO IMAGE (ALWAYS RENDERS) -->
+<section class="overflow-hidden rounded-xl">
+  <img
+    src={heroImage}
+    alt={heroAlt}
+    class="w-full aspect-video object-cover"
+    loading="lazy"
+  />
+</section>
+
+<div class="divider"></div>
+
+
+
+    <!-- CONTENT -->
+<section class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] gap-10">
+  <!-- MAIN CONTENT -->
+  <article class="prose prose-zinc prose-lg max-w-none">
+    <Content />
+  </article>
+
+  <!-- TOC -->
+  <aside>
+    <section
+      id="toc"
+      class="sticky top-28 rounded-xl border border-zinc-200 bg-zinc-50/80 backdrop-blur px-4 py-4 text-sm space-y-3"
+    >
+      <p class="font-medium text-zinc-900">On this page</p>
+      <ul id="toc-list" class="space-y-2"></ul>
+    </section>
+  </aside>
+</section>
+
+
+<div class="divider"></div>
+
+    <!-- CTA -->
+<section class="bg-zinc-50 rounded-xl p-6 space-y-3">
+  <p class="text-sm text-zinc-700">
+    Interested in building a disciplined offline thrift business?
+  </p>
+
+  <a
+    href="/apply"
+    class="inline-block bg-zinc-900 text-white px-5 py-2 rounded-md text-sm"
+  >
+    Apply as City Partner
+  </a>
+</section>
+
+
+  </article>
+<script>
+  const progress = document.getElementById("reading-progress");
+
+  if (progress) {
+    const update = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progress.style.width = percent + "%";
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+</script>
+
+
+<script>
+  const tocList = document.getElementById("toc-list");
+  const headings = document.querySelectorAll(
+    "article h2, article h3"
+  );
+
+  if (tocList && headings.length) {
+    headings.forEach((heading) => {
+      const id =
+        heading.id ||
+        heading.textContent
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-");
+
+      heading.id = id;
+
+      const li = document.createElement("li");
+      li.className =
+        heading.tagName === "H3" ? "ml-4 text-zinc-600" : "";
+
+      const a = document.createElement("a");
+      a.href = "#" + id;
+      a.textContent = heading.textContent || "";
+      a.className = "hover:underline";
+
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  }
+</script>
+<script>
+  const backToTop = document.getElementById("back-to-top");
+
+  if (backToTop) {
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle(
+        "hidden",
+        window.scrollY < 300
+      );
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+</script>
+
+<button
+  id="back-to-top"
+  aria-label="Back to top"
+  class="fixed bottom-6 right-6 hidden items-center justify-center w-10 h-10 rounded-full bg-zinc-900 text-white shadow-md hover:bg-black transition z-50"
+>
+  ↑
+</button>
+
+</BaseLayout>

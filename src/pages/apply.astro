@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ApplyWizard from "../components/apply/ApplyWizard.astro";
+---
+
+<BaseLayout title="Apply — ReKarto">
+
+  <section class="max-w-xl mx-auto">
+
+    <section class="section space-y-6">
+      <h1 class="text-xl font-semibold">Apply as City Partner</h1>
+      <p class="text-xs text-zinc-500">Step 1 of 3</p>
+
+      <ApplyWizard />
+    </section>
+<p class="text-xs text-zinc-500">
+  Have doubts? Read the <a href="/faq" class="underline">FAQ</a> before applying.
+</p>
+
+  </section>
+
+  <script src="/src/scripts/applyWizard.js"></script>
+
+</BaseLayout>

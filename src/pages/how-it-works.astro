@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SystemSnapshot from "../components/SystemSnapshot.astro";
+import PrimaryCTA from "../components/PrimaryCTA.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+
+const breadcrumbItems = [
+    { label: "How It Works" },
+];
+---
+
+<BaseLayout title="How ReKarto Works — System & Rules">
+<Breadcrumbs items={breadcrumbItems} />
+
+  <section class="max-w-4xl mx-auto space-y-12">
+
+    <!-- INTRO -->
+    <section class="section space-y-3">
+      <h1 class="text-xl font-semibold">
+        How the ReKarto System Works
+      </h1>
+
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        ReKarto is not a marketplace and not a retail seller.
+        It is an offline-first supply and distribution system
+        built to support disciplined local operators.
+      </p>
+
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        This page explains how the system functions, why the rules exist,
+        and what ReKarto deliberately does not do.
+      </p>
+    </section>
+
+    <!-- SYSTEM SNAPSHOT -->
+    <section class="section">
+      <SystemSnapshot />
+    </section>
+
+    <!-- WHY OFFLINE -->
+    <section class="section space-y-3">
+      <h2 class="section-title">Why ReKarto Is Offline-First</h2>
+      <!-- list unchanged -->
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Thrift and surplus require physical inspection</li>
+        <li>Online returns destroy margins and discipline</li>
+        <li>Offline allows faster stock rotation</li>
+        <li>Local demand behaves differently from online traffic</li>
+      </ul>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        ReKarto is designed around how this business actually works on the ground,
+        not around convenience for online buyers.
+      </p>
+    </section>
+
+    <!-- WHY NO RETAIL -->
+    <section class="section space-y-3">
+      <h2 class="section-title">Why ReKarto Does Not Sell Retail</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Retail orders break pricing discipline</li>
+        <li>Small quantities increase logistics cost</li>
+        <li>Retail creates noise instead of stable partners</li>
+      </ul>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        Retail selling benefits individual buyers but weakens the system.
+        ReKarto exists to build operators, not customers.
+      </p>
+    </section>
+
+    <!-- CITY PARTNER MODEL -->
+    <section class="section space-y-3">
+      <h2 class="section-title">The City Partner Model</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Each city has one authorized City Partner</li>
+        <li>The City Partner handles distribution in that region</li>
+        <li>ReKarto does not compete with its own partners</li>
+      </ul>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        This model prevents undercutting, confusion, and internal competition.
+        One city. One operator. Clear responsibility.
+      </p>
+    </section>
+
+    <!-- MICRO PARTNERS -->
+    <section class="section space-y-3">
+      <h2 class="section-title">Micro Partners & Local Retailers</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Micro partners buy from the City Partner, not from ReKarto</li>
+        <li>They operate offline retail stores</li>
+        <li>ReKarto does not manage micro partners directly</li>
+      </ul>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        This separation keeps the system scalable and prevents micromanagement.
+      </p>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section space-y-3">
+      <h2 class="section-title">Pricing, Credit & Negotiation</h2>
+      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
+        <li>Pricing is fixed</li>
+        <li>No negotiation</li>
+        <li>No credit</li>
+      </ul>
+      <p class="text-sm text-zinc-700 max-w-2xl">
+        These rules exist to protect serious operators.
+      </p>
+    </section>
+
+    <!-- FINAL FILTER -->
+    <section class="section space-y-3">
+      <p class="text-sm text-zinc-800 max-w-2xl">
+        ReKarto is intentionally strict.
+        These rules reduce short-term volume but build long-term stability.
+      </p>
+      <p class="text-sm text-zinc-800 max-w-2xl">
+        If this approach makes sense to you, proceed.
+        If not, it’s better to stop here.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <PrimaryCTA />
+    </section>
+
+  </section>
+
+</BaseLayout>

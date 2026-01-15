@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-zinc-900 antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-semibold tracking-tight;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+@layer components {
+  .prose {
+    @apply text-zinc-700 leading-relaxed;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    @apply text-zinc-900 font-semibold tracking-tight;
+  }
+
+  .prose h2 {
+    @apply mt-8 mb-3;
+  }
+
+  .prose h3 {
+    @apply mt-6 mb-2;
+  }
+
+  .prose p {
+    @apply my-4;
+  }
+
+  .prose ul {
+    @apply my-4 list-disc pl-6;
+  }
+
+  .prose li {
+    @apply my-1;
+  }
+
+  .prose a {
+    @apply text-zinc-900 underline underline-offset-4;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-zinc-300 pl-4 italic text-zinc-600;
+  }
+  .prose img {
+    @apply w-full max-w-3xl mx-auto rounded-lg shadow-soft my-6;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .section {
+    @apply border border-zinc-300 bg-white rounded-lg p-6 shadow-soft;
+  }
+
+  .section-title {
+    @apply text-sm font-semibold text-zinc-900 mb-2;
+  }
+
+  .divider {
+    @apply border-t border-zinc-200 my-10;
+  }
+}
+

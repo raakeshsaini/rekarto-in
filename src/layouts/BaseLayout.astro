@@ -1,0 +1,189 @@
+---
+const { title = "ReKarto" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link
+  rel="alternate"
+  type="application/rss+xml"
+  title="ReKarto Blog RSS"
+  href="/rss.xml"
+/>
+
+    <link rel="stylesheet" href="/src/styles/global.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ReKarto",
+  "url": "https://rekarto.in",
+  "logo": "https://rekarto.in/images/logo.svg",
+  "sameAs": [
+    "https://www.instagram.com/rekarto",
+    "https://www.linkedin.com/company/rekarto"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ReKarto",
+  "url": "https://rekarto.in"
+}
+</script>
+
+
+
+<!-- Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-F17M9F8QM1"></script>
+
+      <script>
+// @ts-ignore
+        window.dataLayer = window.dataLayer || [];
+// @ts-ignore
+        function gtag(){dataLayer.push(arguments);}
+// @ts-ignore
+        gtag('js', new Date());
+// @ts-ignore
+        gtag('config', 'G-F17M9F8QM1', {
+          anonymize_ip: true,
+          send_page_view: true
+        });
+      </script>
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-zinc-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+
+    <!-- LOGO -->
+    <!-- LOGO -->
+<a href="/" class="flex items-center gap-2">
+  <img
+    src="/rekarto-logo.png"
+    alt="ReKarto"
+    class="h-7 w-auto"
+    loading="eager"
+  />
+</a>
+
+
+    <!-- DESKTOP NAV -->
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="/how-it-works" class="hover:underline">How it works</a>
+      <a href="/city-partner" class="hover:underline">City Partner</a>
+      <!-- <a href="/faq" class="hover:underline">FAQ</a> -->
+      <a href="/blog" class="hover:underline">Blog</a>
+      <a
+        href="/apply"
+        class="bg-zinc-900 text-white px-4 py-2 rounded-md text-sm"
+      >
+        Apply
+      </a>
+    </nav>
+
+    <!-- MOBILE TOGGLE -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-zinc-300"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+  </div>
+</header>
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[9999] hidden bg-white/95 backdrop-blur"
+>
+  <div class="max-w-6xl mx-auto px-6 py-6 space-y-6">
+
+    <!-- TOP BAR -->
+    <div class="flex items-center justify-between">
+      <span class="font-semibold text-lg">ReKarto</span>
+      <button
+        id="mobile-menu-close"
+        class="text-xl"
+        aria-label="Close menu"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- LINKS -->
+    <nav class="flex flex-col gap-4 text-base">
+      <a href="/how-it-works" class="border-b pb-2">How it works</a>
+      <a href="/city-partner" class="border-b pb-2">City Partner</a>
+      <!-- <a href="/faq" class="hover:underline">FAQ</a> -->
+
+      <a href="/blog" class="border-b pb-2">Blog</a>
+      <a
+  href="/apply"
+  onclick="gtag('event','apply_click',{event_category:'conversion'});"
+  class="bg-zinc-900 text-white px-4 py-2 rounded-md"
+>
+  Apply
+</a>
+
+    </nav>
+
+  </div>
+</div>
+
+
+    <!-- MAIN -->
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-16 animate-fade">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-200 mt-20">
+      <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-zinc-600 space-y-2">
+        <p>© {new Date().getFullYear()} ReKarto</p>
+        <nav class="flex gap-4">
+          <a href="/concept/offline-thrift-business">Offline thrift model</a>
+          <a href="/how-it-works">How it works</a>
+          <a href="/city-partner">City Partner</a>
+          <a href="/faq" >FAQ</a>
+
+        </nav>
+      </div>
+    </footer>
+<script>
+  const openBtn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const menu = document.getElementById("mobile-menu");
+
+  const openMenu = () => {
+    if (!menu) return;
+    menu.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeMenu = () => {
+    if (!menu) return;
+    menu.classList.add("hidden");
+    document.body.style.overflow = "";
+  };
+
+  openBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+
+  // Close on link click
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+</script>
+
+  </body>
+</html>

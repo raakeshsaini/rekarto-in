@@ -1,0 +1,169 @@
+<form
+  id="applyWizard"
+  class="max-w-xl mx-auto  bg-white p-6 space-y-8"
+>
+
+  <!-- STEP 1 -->
+  <section data-step="1" class="space-y-6 ">
+
+    <div class="space-y-2 ">
+      <h2 class="text-lg font-semibold text-gray-900">
+        Before You Proceed
+      </h2>
+
+      <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+        <li>We don’t sell retail</li>
+        <li>No credit</li>
+        <li>No online reselling</li>
+        <li>Fixed pricing</li>
+      </ul>
+    </div>
+
+    <!-- AGREEMENT -->
+    <label class="flex items-start gap-2 text-sm text-gray-800">
+      <input
+        type="checkbox"
+        id="agreeRules"
+        class="mt-1 border-gray-300"
+      />
+      <span>
+        I understand and agree to all the above
+      </span>
+    </label>
+
+    <!-- ACTION -->
+    <div>
+      <button
+        type="button"
+        data-next="1"
+        class="bg-gray-900 text-white px-5 py-2 text-sm"
+      >
+        Continue
+      </button>
+    </div>
+
+  </section>
+
+  <!-- STEP 2 -->
+  <section data-step="2" hidden class="space-y-5">
+
+    <h2 class="text-lg font-semibold text-gray-900">
+      Your Capability
+    </h2>
+
+    <div class="space-y-3">
+      <label class="block text-sm">
+        City
+        <input
+          type="text"
+          name="city"
+          required
+          class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+        />
+      </label>
+
+      <label class="block text-sm">
+        Physical Space (sq ft)
+        <input
+          type="text"
+          name="space"
+          required
+          class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+        />
+      </label>
+
+      <label class="block text-sm">
+        Budget Range
+        <input
+          type="text"
+          name="budget"
+          required
+          class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+        />
+      </label>
+
+      <label class="block text-sm">
+        Do you currently run a business?
+        <select
+          name="business"
+          required
+          class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+        >
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="flex gap-3">
+      <button
+        type="button"
+        data-back="2"
+        class="border border-gray-400 px-4 py-2 text-sm text-gray-700"
+      >
+        Back
+      </button>
+
+      <button
+        type="button"
+        data-next="2"
+        class="bg-gray-900 text-white px-5 py-2 text-sm"
+      >
+        Continue
+      </button>
+    </div>
+
+  </section>
+
+  <!-- STEP 3 -->
+  <section data-step="3" hidden class="space-y-5">
+
+    <h2 class="text-lg font-semibold text-gray-900">
+      Your Intent
+    </h2>
+
+    <label class="block text-sm">
+      WhatsApp Number
+      <input
+        type="text"
+        name="whatsapp"
+        required
+        class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+      />
+    </label>
+
+    <label class="block text-sm">
+      Why do you want to run this offline, not online?
+      <textarea
+        name="intent"
+        rows="4"
+        required
+        class="w-full mt-1 border border-gray-300 px-3 py-2 text-sm"
+      ></textarea>
+    </label>
+
+    <p class="text-xs text-gray-600">
+      Most applications are rejected. This is normal.
+    </p>
+
+    <div class="flex gap-3">
+      <button
+        type="button"
+        data-back="3"
+        class="border border-gray-400 px-4 py-2 text-sm text-gray-700"
+      >
+        Back
+      </button>
+
+      <button
+        type="submit"
+        class="bg-gray-900 text-white px-5 py-2 text-sm"
+      >
+        Submit Application
+      </button>
+    </div>
+
+  </section>
+
+</form>
