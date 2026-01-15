@@ -2,6 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cities } from "../../data/cities";
 import CityStatusBadge from "../../components/ui/CityStatusBadge.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+
+
 
 export function getStaticPaths() {
   return cities.map(city => ({
@@ -9,8 +12,12 @@ export function getStaticPaths() {
     props: { city },
   }));
 }
-
 const { city } = Astro.props;
+const breadcrumbItems = [
+  { label: "Thrift Business in"},
+  { label: city.slug }
+];
+
 
 const partnerWhatsappUrl =
   city.hasPartner && city.partner
@@ -19,10 +26,10 @@ const partnerWhatsappUrl =
 ---
 
 <BaseLayout title={`Thrift Business in ${city.name} — ReKarto`}>
-
+<Breadcrumbs items={breadcrumbItems} />
   <section class="max-w-4xl mx-auto space-y-12">
 
-    <section class="section space-y-2">
+    <section class="section space-y-2 border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h1 class="text-xl font-semibold">
         Thrift Business in {city.name}, {city.state}
       </h1>
@@ -33,28 +40,28 @@ const partnerWhatsappUrl =
       </p>
     </section>
 
-    <section class="section">
+    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h2 class="section-title">Local Business Context</h2>
       <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
         {city.context.map(point => <li>{point}</li>)}
       </ul>
     </section>
 
-    <section class="section">
+    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h2 class="section-title">Real Challenges</h2>
       <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
         {city.challenges.map(point => <li>{point}</li>)}
       </ul>
     </section>
 
-    <section class="section">
+    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h2 class="section-title">City Fit Verdict</h2>
       <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
         {city.recommendation.map(point => <li>{point}</li>)}
       </ul>
     </section>
 
-    <section class="section space-y-2">
+    <section class="section space-y-2 border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <p class="text-xs text-zinc-600 mb-4">
         ReKarto appoints only one City Partner per city.
       </p>

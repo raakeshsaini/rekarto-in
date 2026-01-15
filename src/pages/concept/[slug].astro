@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { concepts } from "../../data/concepts";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+
+const breadcrumbItems = [
+    { label: "Thrift Distribution Model" },
+];
 
 export function getStaticPaths() {
   return concepts.map(concept => ({
@@ -13,16 +18,16 @@ const { concept } = Astro.props;
 ---
 
 <BaseLayout title={`${concept.title} — ReKarto`}>
-
+<Breadcrumbs items={breadcrumbItems} />
   <section class="max-w-4xl mx-auto space-y-12">
 
-    <section class="section">
+    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h1 class="text-xl font-semibold">{concept.title}</h1>
       <p class="text-sm text-zinc-700">{concept.intro}</p>
     </section>
 
     {concept.sections.map(section => (
-      <section class="section">
+      <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
         <h2 class="section-title">{section.heading}</h2>
         <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
           {section.points.map(point => <li>{point}</li>)}
@@ -30,7 +35,7 @@ const { concept } = Astro.props;
       </section>
     ))}
 
-    <section class="section">
+    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
       <h2 class="section-title">Practical Verdict</h2>
       <p class="text-sm text-zinc-700">{concept.verdict}</p>
     </section>
