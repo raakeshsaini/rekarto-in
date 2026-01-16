@@ -7,7 +7,7 @@ export const concepts = [
       "An offline thrift business focuses on physical inspection, fast stock rotation, and local demand rather than online listing volume.",
     sections: [
       {
-        heading: "Why Offline Thrift Still Works",
+        heading: "Why Offline Thrift Works",
         points: [
           "Customers want to touch and inspect items",
           "Returns are minimal compared to online resale",
