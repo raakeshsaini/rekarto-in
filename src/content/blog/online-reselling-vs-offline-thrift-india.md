@@ -1,7 +1,7 @@
 ---
 title: "Online Reselling vs Offline Thrift: The Indian Reality"
 description: "A ground-level comparison of online reselling and offline thrift in India, focused on margins, discipline, and long-term survival."
-publishDate: 2026-01-20
+publishDate: 2026-01-19
 image: "/images/blog/online-reselling-vs-offline-thrift-india.webp"
 imageAlt: "Offline thrift store racks contrasted with packaged online resale inventory"
 tags:
