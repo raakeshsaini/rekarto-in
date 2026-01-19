@@ -1,87 +1,140 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { cities } from "../../data/cities";
-import CityStatusBadge from "../../components/ui/CityStatusBadge.astro";
 import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
-
-
+import { cities } from "../../data/cities";
 
 export function getStaticPaths() {
   return cities.map(city => ({
-    params: { city: city.slug },
-    props: { city },
+    params: { city: city.slug }
   }));
 }
-const { city } = Astro.props;
+
+const { city: citySlug } = Astro.params;
+const city = cities.find(c => c.slug === citySlug);
+
+if (!city) {
+  return Astro.redirect("/");
+}
+
 const breadcrumbItems = [
-  { label: "Thrift Business in"},
-  { label: city.slug }
+  { label: "Cities", href: "/find-city-partner" },
+  { label: city.name }
 ];
-
-
-const partnerWhatsappUrl =
-  city.hasPartner && city.partner
-    ? "https://web.whatsapp.com/send?phone=" + city.partner.whatsapp
-    : null;
 ---
 
-<BaseLayout title={`Thrift Business in ${city.name} — ReKarto`}>
-<Breadcrumbs items={breadcrumbItems} />
-  <section class="max-w-4xl mx-auto space-y-12">
+<BaseLayout title={`${city.name}, ${city.state} | ReKarto`}>
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
 
-    <section class="section space-y-2 border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
-      <h1 class="text-xl font-semibold">
-        Thrift Business in {city.name}, {city.state}
+    <!-- Breadcrumb -->
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <!-- Header -->
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold text-zinc-900">
+        Thrift Business in {city.name}
       </h1>
-      <CityStatusBadge hasPartner={city.hasPartner} />
-      <p class="text-sm text-zinc-700">
-        This page explains whether an offline thrift and surplus business
-        makes sense in {city.name}.
+      <p class="text-zinc-600 text-sm">
+        {city.state} · {city.tier}
       </p>
-    </section>
+    </header>
 
-    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
-      <h2 class="section-title">Local Business Context</h2>
-      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
-        {city.context.map(point => <li>{point}</li>)}
-      </ul>
-    </section>
+    <!-- Verdict -->
+    {city.verdict && (
+      <div class="rounded-lg border border-zinc-200 bg-green-50 px-4 py-3 text-sm">
+        <strong>Verdict:</strong> {city.verdict}
+      </div>
+    )}
 
-    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
-      <h2 class="section-title">Real Challenges</h2>
-      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
-        {city.challenges.map(point => <li>{point}</li>)}
-      </ul>
-    </section>
+    <!-- Context -->
+    {city.context?.length > 0 && (
+      <section>
+        <h2 class="text-lg font-semibold mb-3">Local Market Context</h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-zinc-700">
+          {city.context.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    )}
 
-    <section class="section border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
-      <h2 class="section-title">City Fit Verdict</h2>
-      <ul class="list-disc pl-5 text-sm text-zinc-700 space-y-1">
-        {city.recommendation.map(point => <li>{point}</li>)}
-      </ul>
-    </section>
+    <!-- Demand Signals -->
+    {city.demandSignals?.length > 0 && (
+      <section>
+        <h2 class="text-lg font-semibold mb-3">Demand Signals</h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-zinc-700">
+          {city.demandSignals.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    )}
 
-    <section class="section space-y-2 border border-zinc-300 bg-white rounded-lg p-6 shadow-soft animate-fade">
-      <p class="text-xs text-zinc-600 mb-4">
-        ReKarto appoints only one City Partner per city.
-      </p>
+    <!-- Supply Notes -->
+    {city.supplyNotes?.length > 0 && (
+      <section>
+        <h2 class="text-lg font-semibold mb-3">Supply Notes</h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-zinc-700">
+          {city.supplyNotes.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    )}
 
-      {partnerWhatsappUrl ? (
-        <a href={partnerWhatsappUrl} class="border  px-5 py-2 text-sm">
-          Contact City Partner
-        </a>
+    <!-- Why It Works -->
+    {city.whyWorksHere?.length > 0 && (
+      <section>
+        <h2 class="text-lg font-semibold mb-3">
+          Why Offline Thrift Works in {city.name}
+        </h2>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-zinc-700">
+          {city.whyWorksHere.map(item => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Partner / CTA -->
+    <section class="rounded-xl border border-zinc-200 bg-white p-6">
+      {city.hasPartner && city.partner ? (
+        <>
+          <h3 class="font-semibold text-zinc-900 mb-2">
+            Local City Partner Available
+          </h3>
+          <p class="text-sm text-zinc-600">
+            Connect with the authorized city partner for {city.name}.
+          </p>
+        </>
       ) : (
-        <a href="/apply" class="bg-zinc-900 text-white px-5 py-2 rounded-md">
-          Apply as City Partner
-        </a>
+        <>
+          <h3 class="font-semibold text-zinc-900 mb-2">
+            No City Partner Yet
+          </h3>
+          <p class="text-sm text-zinc-600">
+            This city is currently open for partnership.
+          </p>
+        </>
+      )}
+
+      {city.cta && (
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a
+            href="/apply"
+            class="inline-block rounded-md bg-black text-white px-4 py-2 text-sm"
+          >
+            {city.cta.primary}
+          </a>
+
+          <a
+            href="/how-it-works"
+            class="inline-block rounded-md border border-zinc-300 px-4 py-2 text-sm"
+          >
+            {city.cta.secondary}
+          </a>
+        </div>
       )}
     </section>
 
-    <section class=" text-sm text-zinc-700 space-y-1">
-      <a href="/how-it-works" class="underline">How the system works</a>  |  
-      <a href="/city-partner" class="underline">City Partner program</a>
-    </section>
-
   </section>
-
 </BaseLayout>
