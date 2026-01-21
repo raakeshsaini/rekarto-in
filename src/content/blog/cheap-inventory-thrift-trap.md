@@ -1,7 +1,7 @@
 ---
 title: "Cheap Inventory Is the Biggest Thrift Trap"
 description: "Why buying cheap stock ruins more thrift businesses than high prices — and how disciplined operators avoid this trap."
-publishDate: 2026-01-01
+publishDate: 2026-01-21
 image: "/images/blog/cheap-inventory-thrift-trap.webp"
 imageAlt: "Low-quality thrift clothing bundles stacked unsold in a warehouse"
 tags:
